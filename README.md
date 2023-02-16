@@ -1,1 +1,1 @@
-# nzsubreddit-web-scrape
+# jobs-web-scrape
