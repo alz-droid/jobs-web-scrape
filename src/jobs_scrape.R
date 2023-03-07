@@ -37,7 +37,7 @@ repeat {
   
   job_urls <- page %>% 
     html_nodes("._1rct8jye") %>% html_attr("href") %>% 
-    future_map_chr(function(x) glue("https://www.seek.co.nz/{x}#"))
+    future_map_chr(function(x) glue("https://www.seek.co.nz{x}#"))
   
   job_companies <- page %>% 
     html_nodes("._1wkzzau0.a1msqi4u.lnocuo0.lnocuo2.lnocuo21._1d0g9qk4.lnocuod") %>% 
