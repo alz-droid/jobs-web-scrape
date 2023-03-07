@@ -37,7 +37,7 @@ repeat {
   
   job_urls <- page %>% 
     html_nodes("._1rct8jye") %>% html_attr("href") %>% 
-    future_map(function(x) glue("https://www.seek.co.nz/{x}#"))
+    future_map_chr(function(x) glue("https://www.seek.co.nz/{x}#"))
   
   job_companies <- page %>% 
     html_nodes("._1wkzzau0.a1msqi4u.lnocuo0.lnocuo2.lnocuo21._1d0g9qk4.lnocuod") %>% 
@@ -52,11 +52,11 @@ repeat {
   job_subclass <- page %>% 
     html_nodes(".a1msqib2:nth-child(5)") %>% html_text2()
   
-  job_types <- future_map(job_urls, get_job_types)
+  job_types <- future_map_chr(job_urls, get_job_types)
   
-  job_dates_posted <- future_map(job_urls, get_job_posted_by)
+  job_dates_posted <- future_map_chr(job_urls, get_job_posted_by)
   
-  job_descriptions <- future_map(job_urls, get_job_descriptions)
+  job_descriptions <- future_map_chr(job_urls, get_job_descriptions)
   
   data_analytics_jobs <- bind_rows(data_analytics_jobs, tibble(
     Job = job_roles,
